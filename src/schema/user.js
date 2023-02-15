@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -17,4 +17,4 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = feedbackSchema;
+module.exports = userSchema;
