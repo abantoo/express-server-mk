@@ -32,6 +32,7 @@ const userSchema = new mongoose.Schema({
     lastname: String,
 
     role: String,
+    perks: Array,
 }, {
     timestamps: true
 });

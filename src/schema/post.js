@@ -5,14 +5,20 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    body: {
+    content: {
         type: String,
         required: true
     },
-    userId: {
+    author: {
       type: String,
       required: true
-    }
+    },
+    comments: {
+      type: Array,
+    },
+    negativeMotivationCount: Number,
+    positiveMotivationCount: Number,
+    motivationCount: Number
 }, {
     timestamps: true
 });
