@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 import userSchema from"../schema/user"
 
-const Feedback = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = Feedback;
+module.exports = User;
