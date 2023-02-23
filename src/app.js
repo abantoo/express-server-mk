@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 try {
+  // TODO: connection
   const connection = await mongoose.connect(uri);
   
   if (connection) {
