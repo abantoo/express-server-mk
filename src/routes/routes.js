@@ -1,16 +1,11 @@
-import express from "express"
+import express from "express";
+
 const router = express.Router();
 
-const feedbackController = require("../controller/FeedbackController");
+const postController = require("../controller/postController");
 
-router.get("/", feedbackController.getAllFeedbacks)
+router.get("/", postController.getAllMotivations);
 
-router.get("/feedbacks", feedbackController.feedbacks)
-
-// router.get("/", (req, res, next) => {
-//     res.redirect("/feedbacks");
-// })
-
-router.post("/", feedbackController.postFeedback)
+router.post("/", postController.addMotivation);
 
 module.exports = router;
