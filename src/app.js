@@ -1,32 +1,39 @@
-import chalk from 'chalk';
-import express from 'express'
-import bodyParser from 'body-parser'
-import cors from 'cors'
-import dbConfig from './config/dbConfig.json' assert { type: "json" };
-import serverConfig from './config/serverConfig.json' assert { type: "json" };
-import mongoose from 'mongoose';
+import chalk from "chalk";
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import dbConfig from "./config/dbConfig.json" assert { type: "json" };
+import serverConfig from "./config/serverConfig.json" assert { type: "json" };
+import postRoutes from "./routes/routes";
+import mongoose from "mongoose";
 
 const app = express();
 
 const port = serverConfig.port;
-const uri = `mongodb+srv://${dbConfig.username}:${dbConfig.password}@${dbConfig.url}/Storage?retryWrites=true&w=majority`
+const uri = `mongodb+srv://${dbConfig.username}:${dbConfig.password}@${dbConfig.url}/Storage?retryWrites=true&w=majority`;
 
 app.use(cors());
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
+app.use(postRoutes);
 
 try {
   // TODO: connection
   const connection = await mongoose.connect(uri);
-  
+
   if (connection) {
     console.log(connection);
     app.listen(port, () =>
-      console.log(chalk.redBright("This app listening at"),chalk.whiteBright.bgRedBright.bold(`http://localhost:${port}`))
-    )
+      console.log(
+        chalk.redBright("This app listening at"),
+        chalk.whiteBright.bgRedBright.bold(`http://localhost:${port}`)
+      )
+    );
   }
-}
-catch (e) {
-  console.log(e)
+} catch (e) {
+  console.log(e);
 }
