@@ -2,12 +2,14 @@ import chalk from "chalk";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import dbConfig from "./config/dbConfig.json" assert { type: "json" };
-import serverConfig from "./config/serverConfig.json" assert { type: "json" };
-import postRoutes from "./routes/routes";
+import dbConfig from "./config/dbConfig.json";
+import serverConfig from "./config/serverConfig.json";
+// import PostRouter from "./routes/index";
 import mongoose from "mongoose";
+// import postController from "./controller/postController";
 
 const app = express();
+const router = express.Router();
 
 const port = serverConfig.port;
 const uri = `mongodb+srv://${dbConfig.username}:${dbConfig.password}@${dbConfig.url}/Storage?retryWrites=true&w=majority`;
@@ -19,10 +21,13 @@ app.use(
   })
 );
 
-app.use(postRoutes);
+// router.get("/", postController.getAllMotivations);
+
+// router.post("/", postController.addMotivation);
+
+// app.use("/", router);
 
 try {
-  // TODO: connection
   const connection = await mongoose.connect(uri);
 
   if (connection) {

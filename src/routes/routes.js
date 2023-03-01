@@ -1,8 +1,7 @@
 import express from "express";
+import postController from "../controller/postController";
 
 const router = express.Router();
-
-const postController = require("../controller/postController");
 
 router.get("/", postController.getAllMotivations);
 

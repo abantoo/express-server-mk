@@ -1,13 +1,9 @@
-const Feed = require("../model/post");
+import FeedModel from "../model/post";
 
 exports.addMotivation = async (req, res) => {
   const email = req.body.email;
   const feedback = req.body.feedback;
-  const message = new Feed({
-    email: email,
-    feedback: feedback,
-  });
-  await message.save();
+  await FeedModel.addMotivation({ email, feedback });
   res.json({
     message: "successfully updated new feed",
   });
@@ -15,7 +11,7 @@ exports.addMotivation = async (req, res) => {
 
 exports.getAllMotivations = async (req, res) => {
   try {
-    const result = await Feed.find();
+    const result = FeedModel.getAllMotivations();
     res.send(result);
     console.log("Successfully fetched all motivations from database");
   } catch (error) {
